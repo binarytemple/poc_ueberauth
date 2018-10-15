@@ -17,6 +17,16 @@ defmodule PocUberauthWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+
+  end
+
+  scope "/auth", PocUberauthWeb do
+    pipe_through :browser
+
+    get "/:provider", AuthController, :request
+    get "/:provider/callback", AuthController, :callback
+    post "/:provider/callback", AuthController, :callback
+    delete "/logout", AuthController, :delete
   end
 
   # Other scopes may use custom stacks.

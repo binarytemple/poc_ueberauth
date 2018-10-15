@@ -22,6 +22,8 @@ verify the tokens are good
 Application.get_all_env(:ueberauth)
 ```
 
+localhost:4000/auth/github
+
 
 ----
 
