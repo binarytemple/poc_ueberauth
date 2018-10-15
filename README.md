@@ -3,6 +3,8 @@
 
 https://github.com/settings/applications/new
 
+![Image of github oauth setup](docs/github-setup-for-ueberauth.png)
+
 (create the app and add the tokens to your env i.e.
 
 ```
