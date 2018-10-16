@@ -25,13 +25,13 @@ defmodule PocUberauthWeb.ChannelCase do
     end
   end
 
-
   setup tags do
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(PocUberauth.Repo)
+
     unless tags[:async] do
       Ecto.Adapters.SQL.Sandbox.mode(PocUberauth.Repo, {:shared, self()})
     end
+
     :ok
   end
-
 end
