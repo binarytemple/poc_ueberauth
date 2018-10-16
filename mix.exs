@@ -43,7 +43,8 @@ defmodule PocUberauth.Mixfile do
       {:cowboy, "~> 1.0"},
       {:ueberauth, "~> 0.4"},
       {:ueberauth_github, "~> 0.7"},
-      {:plsm, "~> 2.2.0"}
+      {:plsm, "~> 2.2.0"},
+      {:tentacat, "~> 1.2.0"}
     ]
   end
 
