@@ -24,7 +24,7 @@ config :logger, :console,
 
 config :ueberauth, Ueberauth,
   providers: [
-    github: { Ueberauth.Strategy.Github, [default_scope: "user,user:email,public_repo"]}
+    github: { Ueberauth.Strategy.Github, [default_scope: "read:user, user:email,read:org "]}
   ]
 
 config :ueberauth, Ueberauth.Strategy.Github.OAuth,

@@ -1,10 +1,10 @@
 defmodule PocUberauthWeb.AuthController do
   use PocUberauthWeb, :controller
+
+
+  alias PocUberauth.UserAndOrgs
+
     plug Ueberauth
-
-
-
-
 
   def request(conn, _params) do
     render(conn, "request.html", callback_url: Helpers.callback_url(conn))
@@ -24,17 +24,19 @@ defmodule PocUberauthWeb.AuthController do
   end
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
-    case UserFromAuth.find_or_create(auth) do
-      {:ok, user} ->
+
+    case UserAndOrgs.user_and_orgs_from_auth(auth) do
+      %UserAndOrgs{login: login, email: email, orgs: orgs} = uao ->
         conn
-        |> put_flash(:info, "Successfully authenticated.")
-        |> put_session(:current_user, user)
-	|> IO.inspect
+        |> put_flash(:info, "Successfully authenticated: #{inspect(uao)} ")
+        |> put_session(:login, login)
+        |> put_session(:email, email)
+        |> put_session(:orgs, orgs)
         |> redirect(to: "/")
       {:error, reason} ->
-        conn
-        |> put_flash(:error, reason)
-        |> redirect(to: "/")
+          conn
+          |> put_flash(:error, reason)
+          |> redirect(to: "/")
     end
   end
 
