@@ -18,17 +18,15 @@
           <ul class="nav nav-pills pull-right">
             <li>
              <div class="btn-group"> 
-              <%= if assigns[:user_and_orgs]  == nil do  %>
+              <%= if assigns[:user_info] == nil do  %>
                 <%= link "Login",
-                to: auth_path(@conn, :request, "github"),
-                class: "btn btn-primary btn" %>
-              <% end %>
-
-              <%= if ( assigns[:user_and_orgs] ) do %>
-                 <%= link "Logout #{ @user_and_orgs.login }  ",
-                to: auth_path(@conn, :delete),
-                method: :delete,
-                class: "btn btn-primary btn" %>
+                  to: auth_path(@conn, :request, "github"),
+                  class: "btn btn-primary btn" %>
+              <%= else %>
+                 <%= link "Logout #{ @user_info.login }  ",
+                  to: auth_path(@conn, :delete),
+                  method: :delete,
+                  class: "btn btn-primary btn" %>
               <% end %>
               </div>
             </li>

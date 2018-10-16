@@ -1,7 +1,7 @@
 defmodule PocUberauthWeb.AuthController do
   use PocUberauthWeb, :controller
 
-  alias PocUberauth.UserAndOrgs
+  alias PocUberauth.UserInfo
 
   plug(Ueberauth)
   alias Ueberauth.Strategy.Helpers
@@ -24,11 +24,11 @@ defmodule PocUberauthWeb.AuthController do
   end
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
-    case UserAndOrgs.user_and_orgs_from_auth(auth) do
-      %UserAndOrgs{} = user_and_orgs ->
+    case UserInfo.user_info(auth) do
+      %UserInfo{} = user_info ->
         conn
-        |> put_flash(:info, "Successfully authenticated: #{inspect(user_and_orgs)} ")
-        |> put_session(:user_and_orgs, user_and_orgs)
+        |> put_flash(:info, "Successfully authenticated ")
+        |> put_session(:user_info, user_info)
         |> redirect(to: "/")
 
       {:error, reason} ->

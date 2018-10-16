@@ -1,14 +1,15 @@
 <div class="jumbotron">
-  <%= if assigns[:user_and_orgs] do  %>
+  <%= if assigns[:user_info] do  %>
+    <img src="<%= @user_info.avatar_url%>" height=100 width=100/>
     <h2>
-      <%= "Welcome #{@user_and_orgs.login}!" %>
+      <%= "Welcome #{@user_info.login}!" %>
     </h2>
     <h3>Email :
-      <%= "#{@user_and_orgs.email}!" %>
+      <%= "#{@user_info.email}!" %>
     </h3>
     <h3>Member of the following orgs: </h3>
     <ul>
-      <%= for key <- @user_and_orgs.orgs do %>
+      <%= for key <- @user_info.orgs do %>
         <li>
           <%= key %>
         </li>
