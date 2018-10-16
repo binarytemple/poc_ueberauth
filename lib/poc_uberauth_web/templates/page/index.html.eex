@@ -16,5 +16,5 @@
     </ul>
   <% else %>
     <h1> Don't forget to login ! </h1>
-  <%= end %>
+  <% end %>
 </div>

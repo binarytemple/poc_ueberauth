@@ -22,14 +22,14 @@
                 <%= link "Login",
                 to: auth_path(@conn, :request, "github"),
                 class: "btn btn-primary btn" %>
-              <%= end %>
+              <% end %>
 
               <%= if ( assigns[:user_and_orgs] ) do %>
                  <%= link "Logout #{ @user_and_orgs.login }  ",
                 to: auth_path(@conn, :delete),
                 method: :delete,
                 class: "btn btn-primary btn" %>
-                <%= end %>
+              <% end %>
               </div>
             </li>
           </ul>
